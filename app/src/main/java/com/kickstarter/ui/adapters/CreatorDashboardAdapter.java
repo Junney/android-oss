@@ -34,7 +34,7 @@ public class CreatorDashboardAdapter extends KSAdapter {
     } else if (sectionRow.section() == 1) {
       return R.layout.dashboard_reward_stats_view;
     } else if (sectionRow.section() == 2) {
-      return R.layout.dashboard_referrer_breakdown_view;
+      return R.layout.dashboard_referrer_breakdown_layout;
     } else {
       return R.layout.dashboard_referrer_stats_view;
     }
@@ -45,7 +45,7 @@ public class CreatorDashboardAdapter extends KSAdapter {
       return new CreatorDashboardHeaderViewHolder(view, this.delegate);
     } else if (layout == R.layout.dashboard_reward_stats_view) {
       return new CreatorDashboardRewardStatsViewHolder(view);
-    } else if (layout == R.layout.dashboard_referrer_breakdown_view) {
+    } else if (layout == R.layout.dashboard_referrer_breakdown_layout) {
       return new CreatorDashboardReferrerBreakDownViewHolder(view);
     } else {
       return new CreatorDashboardReferrerStatsViewHolder(view);
@@ -60,6 +60,12 @@ public class CreatorDashboardAdapter extends KSAdapter {
     sections().add(
       Collections.singletonList(
         Pair.create(projectAndStatsEnvelope.first, projectAndStatsEnvelope.second.rewardDistribution())
+      )
+    );
+    // add referral stats sections
+    sections().add(
+      Collections.singletonList(
+        Pair.create(projectAndStatsEnvelope.first, projectAndStatsEnvelope.second.referralDistribution())
       )
     );
     // add referral stats sections
